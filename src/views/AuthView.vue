@@ -1,98 +1,11 @@
 <template>
-  <!-- Header Container
-================================================== -->
-  <header id="header-container">
-    <!-- Header -->
-    <div id="header">
-      <div class="container">
-        <!-- Left Side Content -->
-        <div class="left-side">
-          <!-- Logo -->
-          <div id="logo">
-            <a href="index.html"
-              ><img
-                src="images/logo2.png"
-                data-sticky-logo="images/logo.png"
-                alt=""
-            /></a>
-          </div>
-
-          <!-- Mobile Navigation -->
-          <div class="mmenu-trigger">
-            <button class="hamburger hamburger--collapse" type="button">
-              <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-              </span>
-            </button>
-          </div>
-
-          <!-- Main Navigation -->
-          <nav id="navigation" class="style-1">
-            <ul id="responsive">
-              <li>
-                <router-link to="/">Home</router-link>
-              </li>
-              <li>
-                <router-link to="/about">About</router-link>
-              </li>
-              <li>
-                <router-link to="/blog">Blog</router-link>
-              </li>
-              <li>
-                <router-link to="/rooms">Rooms</router-link>
-              </li>
-              <li>
-                <router-link to="/pages-contact">Pages contact</router-link>
-              </li>
-            </ul>
-          </nav>
-          <div class="clearfix"></div>
-          <!-- Main Navigation / End -->
-        </div>
-        <!-- Left Side Content / End -->
-
-        <!-- Right Side Content / End -->
-        <div class="right-side">
-          <div class="header-widget">
-            <router-link to="/auth" class="sign-in popup-with-zoom-anim"
-              ><i class="sl sl-icon-login"></i> Sign In</router-link
-            >
-
-            <!-- User Menu -->
-            <div class="user-menu">
-              <div class="user-name">
-                <span><img src="images/dashboard-avatar.jpg" alt="" /></span>Hi,
-                Tom!
-              </div>
-              <ul>
-                <li>
-                  <a href="dashboard.html"
-                    ><i class="sl sl-icon-settings"></i> Dashboard</a
-                  >
-                </li>
-                <li>
-                  <a href="dashboard-messages.html"
-                    ><i class="sl sl-icon-envelope-open"></i> Messages</a
-                  >
-                </li>
-                <li>
-                  <a href="dashboard-bookings.html"
-                    ><i class="fa fa-calendar-check-o"></i> Bookings</a
-                  >
-                </li>
-                <li>
-                  <a href="index.html"
-                    ><i class="sl sl-icon-power"></i> Logout</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Right Side Content / End -->
-
-        <!-- Sign In Popup -->
-        <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+  <div
+    class="mfp-wrap mfp-close-btn-in mfp-auto-cursor my-mfp-zoom-in mfp-ready auth-background"
+    tabindex="-1"
+  >
+    <div class="mfp-container mfp-inline-holder">
+      <div class="mfp-content">
+        <div id="sign-in-dialog" class="zoom-anim-dialog">
           <div class="small-dialog-header">
             <h3>Sign In</h3>
           </div>
@@ -100,13 +13,13 @@
           <!--Tabs -->
           <div class="sign-in-form style-1">
             <ul class="tabs-nav">
-              <li class=""><a href="#tab1">Log In</a></li>
+              <li class="active"><a href="#tab1">Log In</a></li>
               <li><a href="#tab2">Register</a></li>
             </ul>
 
             <div class="tabs-container alt">
               <!-- Login -->
-              <div class="tab-content" id="tab1" style="display: none">
+              <div class="tab-content" id="tab1" style="">
                 <form method="post" class="login">
                   <p class="form-row form-row-wide">
                     <label for="username"
@@ -118,6 +31,7 @@
                         name="username"
                         id="username"
                         value=""
+                        fdprocessedid="66fzn"
                       />
                     </label>
                   </p>
@@ -131,6 +45,7 @@
                         type="password"
                         name="password"
                         id="password"
+                        fdprocessedid="3l8e7"
                       />
                     </label>
                     <span class="lost_password">
@@ -144,6 +59,7 @@
                       class="button border margin-top-5"
                       name="login"
                       value="Login"
+                      fdprocessedid="6g0tlg"
                     />
                     <div class="checkboxes margin-top-10">
                       <input id="remember-me" type="checkbox" name="check" />
@@ -220,18 +136,35 @@
               </div>
             </div>
           </div>
+          <button
+            title="Close (Esc)"
+            type="button"
+            class="mfp-close"
+            fdprocessedid="1yd2rq"
+          ></button>
         </div>
-        <!-- Sign In Popup / End -->
       </div>
     </div>
-    <!-- Header / End -->
-  </header>
-  <div class="clearfix"></div>
-  <!-- Header Container / End -->
+  </div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+.auth-background {
+  background: url("https://news.airbnb.com/wp-content/uploads/sites/4/2020/04/Airbnb_Bali_Bamboo_House.jpg")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}
+</style>
