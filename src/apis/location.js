@@ -1,10 +1,8 @@
-import axios from "axios";
+import axiosApi from ".";
 
 export const findLocationsApi = async (payload) => {
   const name = payload?.name || "";
 
-  const response = await axios.get(
-    `http://localhost:8081/api/locations?name=${name}`
-  );
-  return response.data;
+  const response = await axiosApi.get(`/locations?name=${name}`);
+  return response;
 };

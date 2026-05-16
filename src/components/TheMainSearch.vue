@@ -15,7 +15,11 @@
       </div>
       <a href="#"><i class="fa fa-map-marker"></i></a>
       <ul v-if="keyword.length" class="list-location">
-        <li v-for="location in locations" :key="location.id">
+        <li
+          v-for="location in locations"
+          :key="location.id"
+          @click="handleNavigateToRoomsPage(location.id)"
+        >
           <span class="im im-icon-Location-2"></span>
           <span class="location-item-title">{{ location.name }}</span>
         </li>
@@ -44,11 +48,13 @@
 
 <script>
 import { computed, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 export default {
   setup() {
     const store = useStore();
+    const router = useRouter();
     const keyword = ref("");
 
     const locations = computed(() => store.state.location.locations);
@@ -59,11 +65,16 @@ export default {
       }
     });
 
+    const handleNavigateToRoomsPage = (locationId) => {
+      router.push(`/rooms?locationId=${locationId}`);
+    };
+
     store.dispatch("location/findLocationsAction");
 
     return {
       keyword,
       locations,
+      handleNavigateToRoomsPage,
     };
   },
 };

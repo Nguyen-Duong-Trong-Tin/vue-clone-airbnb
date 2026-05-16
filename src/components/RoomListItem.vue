@@ -5,7 +5,7 @@
       <a href="listings-single-page.html" class="listing-item">
         <!-- Image -->
         <div class="listing-item-image">
-          <img src="images/listing-item-01.jpg" alt="" />
+          <img :src="room.image" :alt="room.name" />
           <span class="tag">Eat & Drink</span>
         </div>
 
@@ -14,8 +14,10 @@
           <div class="listing-badge now-open">Now Open</div>
 
           <div class="listing-item-inner">
-            <h3>Tom's Restaurant <i class="verified-icon"></i></h3>
-            <span>964 School Street, New York</span>
+            <h3>{{ room.name }} <i class="verified-icon"></i></h3>
+            <span
+              >{{ room.location.province }}, {{ room.location.country }}</span
+            >
             <div class="star-rating" data-rating="3.5">
               <div class="rating-counter">(12 reviews)</div>
             </div>
@@ -28,7 +30,16 @@
   </div>
   <!-- Listing Item / End -->
 </template>
+
 <script>
-export default {};
+export default {
+  props: {
+    room: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>
+
 <style></style>

@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 
 import location from "./modules/location";
+import room from "./modules/room";
 
 export default createStore({
   state: {},
@@ -9,5 +10,6 @@ export default createStore({
   actions: {},
   modules: {
     location,
+    room,
   },
 });

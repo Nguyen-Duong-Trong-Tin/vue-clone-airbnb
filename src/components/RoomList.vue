@@ -10,11 +10,11 @@
 
     <!-- Listings -->
     <div class="row fs-listings">
-      <room-list-item></room-list-item>
-      <room-list-item></room-list-item>
-      <room-list-item></room-list-item>
-      <room-list-item></room-list-item>
-      <room-list-item></room-list-item>
+      <room-list-item
+        v-for="room in rooms"
+        :key="room.id"
+        :room="room"
+      ></room-list-item>
     </div>
     <!-- Listings Container / End -->
 
@@ -53,11 +53,21 @@
   </section>
 </template>
 <script>
+import { useStore } from "vuex";
 import RoomListItem from "./RoomListItem.vue";
+import { computed } from "vue";
 
 export default {
   components: {
     RoomListItem,
+  },
+  setup() {
+    const store = useStore();
+
+    const rooms = computed(() => store.state.room.rooms);
+    return {
+      rooms,
+    };
   },
 };
 </script>
