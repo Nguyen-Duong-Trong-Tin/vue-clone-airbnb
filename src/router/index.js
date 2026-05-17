@@ -5,6 +5,8 @@ import BlogView from "@/views/BlogView.vue";
 import RoomsView from "@/views/RoomsView.vue";
 import RoomDetailView from "@/views/RoomDetailView.vue";
 import PagesContactView from "@/views/PagesContactView.vue";
+import AuthLoginView from "@/views/AuthLoginView.vue";
+import AuthRegisterView from "@/views/AuthRegisterView.vue";
 
 const routes = [
   {
@@ -16,6 +18,19 @@ const routes = [
     path: "/auth",
     name: "auth",
     component: AuthView,
+    meta: { layout: "auth" },
+    children: [
+      {
+        path: "login",
+        name: "login",
+        component: AuthLoginView,
+      },
+      {
+        path: "register",
+        name: "register",
+        component: AuthRegisterView,
+      },
+    ],
   },
   {
     path: "/about",
@@ -37,7 +52,7 @@ const routes = [
     component: RoomsView,
   },
   {
-    path: "/room-detail",
+    path: "/room-detail/:id",
     name: "room-detail",
     component: RoomDetailView,
   },

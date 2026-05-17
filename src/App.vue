@@ -1,19 +1,22 @@
 <template>
-  <the-header></the-header>
-
-  <router-view />
-
-  <the-footer></the-footer>
+  <component :is="layoutComponent">
+    <router-view />
+  </component>
 </template>
 
 <script>
-import TheHeader from "./components/TheHeader.vue";
-import TheFooter from "./components/TheFooter.vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import DefaultLayout from "@/layouts/DefaultLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
 
 export default {
-  components: {
-    TheHeader,
-    TheFooter,
+  setup() {
+    const route = useRoute();
+    const layoutComponent = computed(() => {
+      return route.meta?.layout === "auth" ? AuthLayout : DefaultLayout;
+    });
+    return { layoutComponent };
   },
 };
 </script>

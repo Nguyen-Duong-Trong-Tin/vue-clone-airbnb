@@ -376,7 +376,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.popup-with-zoom-anim').magnificPopup({
+	$('a.popup-with-zoom-anim[href^="#"]').magnificPopup({
 		 type: 'inline',
 
 		 fixedContentPos: false,
@@ -392,7 +392,7 @@ $(document).ready(function(){
 		 mainClass: 'my-mfp-zoom-in'
 	});
 
-	$('.mfp-image').magnificPopup({
+	$('a.mfp-image').magnificPopup({
 		 type: 'image',
 		 closeOnContentClick: true,
 		 mainClass: 'mfp-fade',
@@ -401,7 +401,7 @@ $(document).ready(function(){
 		 }
 	});
 
-	$('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+	$('a.popup-youtube, a.popup-vimeo, a.popup-gmaps').magnificPopup({
 		 disableOn: 700,
 		 type: 'iframe',
 		 mainClass: 'mfp-fade',

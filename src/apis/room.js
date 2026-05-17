@@ -12,3 +12,7 @@ export const findRoomsApi = (query) => {
 
   return axiosApi.get(url);
 };
+
+export const findRoomByIdApi = (id) => {
+  return axiosApi.get(`/rooms/${id}`);
+};

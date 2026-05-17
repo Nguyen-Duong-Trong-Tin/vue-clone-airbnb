@@ -2,7 +2,7 @@
   <!-- Listing Item -->
   <div class="col-lg-12 col-md-12">
     <div class="listing-item-container list-layout" data-marker-id="1">
-      <a href="listings-single-page.html" class="listing-item">
+      <router-link :to="`/room-detail/${room.id}`" class="listing-item">
         <!-- Image -->
         <div class="listing-item-image">
           <img :src="room.image" :alt="room.name" />
@@ -25,7 +25,7 @@
 
           <span class="like-icon"></span>
         </div>
-      </a>
+      </router-link>
     </div>
   </div>
   <!-- Listing Item / End -->

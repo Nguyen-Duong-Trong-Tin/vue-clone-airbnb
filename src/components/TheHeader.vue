@@ -54,7 +54,7 @@
         <!-- Right Side Content / End -->
         <div class="right-side">
           <div class="header-widget">
-            <router-link to="/auth" class="sign-in popup-with-zoom-anim"
+            <router-link to="/auth/login" class="sign-in popup-with-zoom-anim"
               ><i class="sl sl-icon-login"></i> Sign In</router-link
             >
 
