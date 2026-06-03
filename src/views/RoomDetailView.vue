@@ -584,10 +584,11 @@
             </div>
 
             <!-- Book Now -->
-            <a
-              href="pages-booking.html"
+            <router-link
+              v-if="roomDetail"
+              :to="`/booking/${roomDetail.id}`"
               class="button book-now fullwidth margin-top-5"
-              >Request To Book</a
+              >Request To Book</router-link
             >
 
             <!-- Estimated Cost -->

@@ -7,6 +7,11 @@ import RoomDetailView from "@/views/RoomDetailView.vue";
 import PagesContactView from "@/views/PagesContactView.vue";
 import AuthLoginView from "@/views/AuthLoginView.vue";
 import AuthRegisterView from "@/views/AuthRegisterView.vue";
+import BookingView from "@/views/BookingView.vue";
+import UserProfileView from "@/views/UserProfileView.vue";
+import DashboardView from "@/views/DashboardView.vue";
+import AdminBookingView from "@/views/AdminBookingView.vue";
+import { requireAdmin } from "@/utils/adminGuard.js";
 
 const routes = [
   {
@@ -60,6 +65,30 @@ const routes = [
     path: "/pages-contact",
     name: "pages-contact",
     component: PagesContactView,
+  },
+  {
+    path: "/booking/:roomId",
+    name: "booking",
+    component: BookingView,
+  },
+  {
+    path: "/user-profile/:userId",
+    name: "user-profile",
+    component: UserProfileView,
+  },
+  {
+    path: "/admin/dashboard",
+    name: "admin-dashboard",
+    component: DashboardView,
+    meta: { layout: "admin" },
+    beforeEnter: requireAdmin,
+  },
+  {
+    path: "/admin/bookings",
+    name: "admin-bookings",
+    component: AdminBookingView,
+    meta: { layout: "admin" },
+    beforeEnter: requireAdmin,
   },
 ];
 

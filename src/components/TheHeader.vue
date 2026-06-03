@@ -54,35 +54,34 @@
         <!-- Right Side Content / End -->
         <div class="right-side">
           <div class="header-widget">
-            <router-link to="/auth/login" class="sign-in popup-with-zoom-anim"
+            <router-link
+              v-if="userLoginedIn"
+              to="/auth/login"
+              class="sign-in popup-with-zoom-anim"
+              ><i class="sl sl-icon-logout"></i> Logout</router-link
+            >
+            <router-link
+              v-else
+              to="/auth/login"
+              class="sign-in popup-with-zoom-anim"
               ><i class="sl sl-icon-login"></i> Sign In</router-link
             >
 
             <!-- User Menu -->
             <div class="user-menu">
-              <div class="user-name">
+              <div class="user-name" v-if="userLoginedIn">
                 <span><img src="images/dashboard-avatar.jpg" alt="" /></span>Hi,
-                Tom!
+                {{ userLoginedIn.name }}
               </div>
               <ul>
-                <li>
-                  <a href="dashboard.html"
-                    ><i class="sl sl-icon-settings"></i> Dashboard</a
+                <li v-if="userLoginedIn">
+                  <router-link :to="`/user-profile/${userLoginedIn.id}`"
+                    ><i class="sl sl-icon-user"></i> Profile</router-link
                   >
                 </li>
-                <li>
-                  <a href="dashboard-messages.html"
-                    ><i class="sl sl-icon-envelope-open"></i> Messages</a
-                  >
-                </li>
-                <li>
-                  <a href="dashboard-bookings.html"
-                    ><i class="fa fa-calendar-check-o"></i> Bookings</a
-                  >
-                </li>
-                <li>
-                  <a href="index.html"
-                    ><i class="sl sl-icon-power"></i> Logout</a
+                <li v-if="userLoginedIn">
+                  <router-link to="/admin/dashboard"
+                    ><i class="sl sl-icon-settings"></i> Dashboard</router-link
                   >
                 </li>
               </ul>
@@ -231,7 +230,20 @@
 </template>
 
 <script>
-export default {};
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+export default {
+  setup() {
+    const store = useStore();
+
+    const userLoginedIn = computed(() => store.state.auth.userLoginedIn);
+
+    return {
+      userLoginedIn,
+    };
+  },
+};
 </script>
 
 <style></style>

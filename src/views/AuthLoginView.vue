@@ -8,18 +8,19 @@
     <div class="tabs-container alt">
       <!-- Login -->
       <div class="tab-content" id="tab1" style="">
-        <form method="post" class="login">
+        <form method="post" class="login" @submit.prevent="handleSubmit">
           <p class="form-row form-row-wide">
-            <label for="username"
-              >Username:
+            <label for="email"
+              >Email:
               <i class="im im-icon-Male"></i>
               <input
                 type="text"
                 class="input-text"
-                name="username"
-                id="username"
+                name="email"
+                id="email"
                 value=""
                 fdprocessedid="66fzn"
+                v-model="userLoginData.email"
               />
             </label>
           </p>
@@ -34,6 +35,7 @@
                 name="password"
                 id="password"
                 fdprocessedid="3l8e7"
+                v-model="userLoginData.password"
               />
             </label>
           </p>
@@ -80,7 +82,50 @@
 </template>
 
 <script>
-export default {};
+import { reactive } from "vue";
+import { useStore } from "vuex";
+import { setCookie } from "@/utils/cookies";
+import { useRouter } from "vue-router";
+
+export default {
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const userLoginData = reactive({
+      email: "",
+      password: "",
+    });
+
+    const handleSubmit = async () => {
+      if (!userLoginData.email || !userLoginData.password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      try {
+        const response = await store.dispatch(
+          "auth/loginAction",
+          userLoginData
+        );
+        const accessToken = response.data.accessToken;
+        const refreshToken = response.data.refreshToken;
+        if (accessToken) setCookie("accessToken", accessToken, 60 * 60); // 1 hour
+        if (refreshToken)
+          setCookie("refreshToken", refreshToken, 7 * 24 * 60 * 60); // 7 days
+
+        router.push("/");
+      } catch (error) {
+        alert("Login failed. Please check your credentials and try again.");
+      }
+    };
+
+    return {
+      userLoginData,
+      handleSubmit,
+    };
+  },
+};
 </script>
 
 <style scoped>
